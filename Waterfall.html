@@ -1,0 +1,208 @@
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<title>Waterfall</title>
+</head>
+
+<body>
+	{{#if currentUser}}
+		{{> apps}}
+	{{else}}
+		<div class="span9" style="float:none; margin:8px auto;"><button class="btn pull-right" id="show-login">{{loginButtons align="right"}}</button></div>
+		{{> faq}}
+	{{/if}}
+</body>
+
+<template name="apps">
+	<div id="page" class="container span9">
+		<div style="float: right; margin-top: 8px;">
+			<div id="main-nav" class="btn-group">
+			  <button class="btn" id="show-todos">Todos</button>
+			  <button class="btn" id="show-calendar">Calendar</button>
+			  <button class="btn" id="show-notes">Notes</button>
+			  <button class="btn" id="show-chat">Chat</button>
+			  <button class="btn" id="show-faq">About</button>
+			  <button class="btn" id="show-login">{{loginButtons align="right"}}</button>
+			</div>
+		</div>
+		{{#if listapp}}
+			{{> items}}
+		{{/if}}
+		{{#if calapp}}
+			{{> calendar}}
+		{{/if}}
+		{{#if notesapp}}
+			{{> notes}}
+		{{/if}}
+		{{#if chatapp}}
+			{{> chat}}
+		{{/if}}
+		{{#if faqapp}}
+			{{> faq}}
+		{{/if}}
+	</div>
+</template>
+
+<template name="items">
+	<h1>Todos</h1>
+	<input id="add-item" type="text" data-provide="typeahead" placeholder=">" class="span9" size="32" />
+	<span class="pull-right">{{zDate}}</span>
+	<ul class="main-list">
+		<h3>{{username}}</h3>
+		{{#each item}}
+			{{#if Editing}}
+				<input type="text" id="editing" class="edit_item span7" value="{{Input}}"/>
+				<span style="text-align:center;">{{zDate2}}</span>
+			{{else}}
+				<li class="{{Class}} item" id="{{id}}">
+					<span>{{Name}}</span>
+					<span class="label">{{Date}}</span>
+					<i class="close {{Icon}}"></i>
+					<div style="display: inline-block; float:right;">
+					{{#each this.Tags}}
+						<span class="pull-right label label-info">
+							{{this}}
+						</span>	
+					{{/each}}
+					{{#each this.At}}
+						<span class="label pull-right" style="color: rgb(168, 0, 0);">
+							{{this}}
+						</span>		
+					{{/each}}
+					</div>
+				</li>
+			{{/if}}
+		{{/each}}
+	</ul>
+</template>
+
+<template name="calendar">
+	<h1>Calendar</h1>
+	<input id="add-event" type="text" data-provide="typeahead" placeholder=">" class="span9" size="32" />
+	<span class="pull-right">{{zDate}}</span>
+	<ul class="main-list">
+		<h3>{{username}}</h3>
+		{{#each Days}}
+			<li class="alert">
+				<span class='date-title'>{{this.ti}}</span>
+				{{#each this.Items}}
+					{{#if Editing}}
+						<input type="text" id="editing" class="edit_item span6" value="{{Input}}"/>
+						<span>{{zDate2}}</span>
+					{{else}}
+						<li class="alert-info evnt" style="text-align:center;">
+							<span class="label" style="float:left;">{{Date}}</span>
+							<span>{{Name}}</span>
+							<i class="close icon-ok" style="right:0; top:0;"></i>
+							<div style="display: inline-block; float:right;">
+							{{#each Tags}}
+								<span class="pull-right label label-info">
+									{{this}}
+								</span>	
+							{{/each}}
+							{{#each At}}
+								<span class="label pull-right" style="color: rgb(168, 0, 0);">
+									{{this}}
+								</span>		
+							{{/each}}
+							</div>
+						</li>
+					{{/if}}
+				{{/each}}
+			</li>
+		{{/each}}
+		
+	</ul>
+	<div style="height:300px;"></div>
+</template>
+
+<template name="notes">
+	<h1>Notes</h1>
+	<input type="text" class="span9" size="32" id="add-note" placeholder=">">
+	<h3>{{username}}</h3>
+	<div class="span9" style="margin-left:0;">
+		<div id="sidebar" class="span3">
+			<ul>
+				{{#each note}}
+					{{#if editing}}
+						<input type="text" id="editing" class="edit_note" value="{{Title}}">
+					{{else}}
+						<li class="notetitle {{selected}} {{status}}">
+						<span>{{Title}}</span>
+						<i class="close {{icon}}"></i>
+						</li>
+					{{/if}}
+				{{/each}}
+			<ul>
+		</div>
+		<div id="mainframe" class="span6">
+			{{#if selectedNote}}
+				<textarea class="span6" rows="20" id="note">{{Text}}</textarea>
+			{{/if}}
+		</div>
+	</div>
+</template>
+
+<template name="chat">
+	<h1>Chat</h1>
+	<input id="add-chat" type="text" data-provide="typeahead" placeholder=">" class="span9" size="32" />
+	<h3>{{username}}</h3>
+	<div class="container">
+		<ul class="main-list chatlist span9">
+			{{#each chat}}
+			<li class="span7 {{align}}">
+				<span style="font-weight:bold">{{ownername}}:</span>
+				<span class="label"> to:
+					{{#each this.At}}
+							{{this}}
+					{{/each}}
+				</span>
+				<span>{{Chat}}</span>
+				<i class="close {{icon}}"></i>
+				{{#each this.Tags}}
+					<span class="label-info">{{this}}</span>
+				{{/each}}
+			</li>
+			{{/each}}
+		</ul>
+	</div>
+	<hr />
+	<div>
+		
+	</div class="span9">
+
+</template>
+
+<template name="faq">
+	<div id="pages" class="span9">
+		<h1>Waterfall</h1>
+		<div id="desc">
+			<br>
+			<ul id="home">
+				<li style="border:none;">
+					<h3>A simple suite of personal productivity apps</h3>
+				</li>
+				<li><a href="#">todo-list</a><br>
+					create todos and sort using #hashtags, @mentions, and dates. 
+				</li>
+				<li><a href="#">calendar</a><br>
+					create events and see your scheduled todos
+				</li>
+				<li><a href="#">notes</a><br>
+					take notes and organize by #hastags and @mentions
+				</li>
+				<li><a href="#">project repository</a><br>
+					search and find all the to-dos, events, and notes based on #hashtags and @mentions
+				</li>
+				<li><a href="#">profile site</a> <br>
+					Simple public page for users to show information about themselves
+				</li>
+				<li><a href="#">discussions</a><br>
+					Application that is a mix of chat and forum. Allows for discussion among various users. Has the #hashtag capability.
+				</li>
+			</ul>
+		</div>
+	</div>
+</template>
+
+

@@ -1,0 +1,151 @@
+body {
+	background: #f9f9f9;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 15px;
+	font-weight: 300;
+}
+
+#page, #pages {
+	margin: 0 auto;
+	float: none;
+}
+
+h1, h2, h3, h4, h5 { font-weight: 300; }
+
+#main-nav {
+	
+}
+.btn {
+	font-family: "Courier New", Courier, monospace;
+	/*border-bottom: 1px dashed rgb(188, 188, 188);*/
+	background: #f5f5f5;
+}
+
+#add-item, #editing, #add-event, #add-note, #add-chat {
+	background: transparent;
+	font-family: "Courier New", Courier, monospace;
+	padding: 10px;
+	border: 1px dashed rgb(188, 188, 188);
+}
+
+.main-list, #home {
+	list-style:none;
+    margin:0;
+    padding:0;
+}
+
+.main-list li, #home li {
+	list-style:none;
+    margin-top:5px;
+    margin-bottom:5px;
+    padding: 10px;
+    border: 1px dashed rgb(188, 188, 188);
+    border-radius: 5px;
+}
+
+.label {
+	font-weight: normal;
+	font-size: 12px;	
+	margin: 2px 2px;
+	padding: 4px 5px;
+	background-color: #f2f2f2;
+	color: rgb(101, 101, 101);
+}
+
+i {
+	margin: 0 3px;
+}
+
+.alert {
+	color: rgb(18, 80, 111);
+	padding: 12px 12px;
+	background-color: #f2f2f2;
+	border: 1px dashed rgb(188, 188, 188);
+	overflow: hidden;
+}
+.alert-info {
+	color: rgb(18, 80, 111);
+	background-color: #f9f9f9;
+	border: 1px dashed rgb(188, 188, 188);
+	overflow: hidden;
+}
+
+.alert-error {
+	background-color: #f2f2f2;
+	border: 1px dashed rgb(188, 188, 188);
+	text-decoration: line-through;
+	overflow: hidden;
+}
+.alert-error .label {
+	text-decoration: line-through;
+}
+
+.label-info {
+	color: #3a87ad;
+	background-color: #f2f2f2;
+}
+#login-buttons a {
+	text-decoration: none;
+	color: #3a87ad;
+}
+.accounts-dialog {
+	background: #f9f9f9;
+	border: none;
+}
+
+#login-buttons .login-button, .accounts-dialog .login-button {
+	background: #fff;
+	color: #3a87ad;
+	text-shadow: none;
+	border: none;
+}
+.accounts-dialog input[type] {
+	border: 1px dashed rgb(188, 188, 188);
+}
+
+.date-title {
+	font-weight: 600;
+	display: block;
+}
+
+/* Notes */
+#sidebar {
+	margin-left: 0;
+}
+
+#sidebar ul {
+	list-style:none;
+    margin:0;
+    padding:0;
+}
+
+#sidebar ul li {
+	list-style:none;
+    margin:5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px dashed rgb(188, 188, 188);
+    overflow: hidden;
+}
+
+.white {
+	background-color: white !important;
+}
+
+#note {
+	background-color: #fff;
+	font-family: "Courier New", Courier, monospace;
+	margin-top: 5px;
+	border: 1px dashed rgb(188, 188, 188);
+}
+
+.done {
+	background-color: #f2f2f2;
+	text-decoration: line-through;
+}
+
+/*Chat*/
+.chatlist {
+	/*max-height: 300px;*/
+	overflow: scroll;
+}
