@@ -1,6 +1,6 @@
-var lists = new Meteor.Collection('List');
-var notes = new Meteor.Collection('Notes');
-var chats = new Meteor.Collection('Chats');
+lists = new Meteor.Collection('List');
+notes = new Meteor.Collection('Notes');
+chats = new Meteor.Collection('Chats');
 
 function adminUser(userId) {
      var adminUser = Meteor.users.findOne({username:"admin"});

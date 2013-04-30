@@ -1,6 +1,6 @@
 Meteor.subscribe 'Lists'
 
-array1 = []
+@array1 = []
 
 Meteor.startup ->
 	Deps.autorun ->
@@ -31,13 +31,13 @@ Meteor.startup ->
 		if Meteor.user()?
 			Session.set 'username', '@' + Meteor.user().username
 
-parseHashtag = (theItem) ->
+@parseHashtag = (theItem) ->
 	theItem.match(/(#[A-Za-z0-9\-\_]+)/g) or []
 
-parseAtsign = (theItem) ->
+@parseAtsign = (theItem) ->
 	theItem.match(/(@[A-Za-z0-9\-\_]+)/g) or []
 
-parseItem = (Main, tags, at, valdate) ->
+@parseItem = (Main, tags, at, valdate) ->
 	if Main? and tags? and at?
 		for item in tags
 			Main = Main.replace(item, "")
@@ -46,7 +46,7 @@ parseItem = (Main, tags, at, valdate) ->
 	Main = Main.replace(valdate,"")
 	Main
 
-orItems = (tags, at) ->
+@orItems = (tags, at) ->
 	results = []
 	results.push Tags: x for x in tags
 	results.push At: y for y in at
@@ -58,7 +58,7 @@ orItems = (tags, at) ->
 	else 
 		Session.set 'showing', 'default'
 
-andItems = (tags, at) ->
+@andItems = (tags, at) ->
 	results = []
 	results.push Tags: x for x in tags
 	results.push At: y for y in at
@@ -70,10 +70,10 @@ andItems = (tags, at) ->
 	else 
 		Session.set 'showing', 'default'
 
-focusText = (i) ->
+@focusText = (i) ->
 	i.focus()
 	i.select()
 
-respondText = (i, val) ->
+@respondText = (i, val) ->
 	i.focus()
 	i.value = (if val then val else "")

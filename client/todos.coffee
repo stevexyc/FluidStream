@@ -104,7 +104,7 @@ Template.items.events = {
 		lists.remove this._id
 }
 
-readItem = (e,t) ->
+@readItem = (e,t) ->
 	itemEval = String(e.target.value || "") # to string
 	tags = parseHashtag(itemEval) # get hashtags
 	at = parseAtsign(itemEval) # get @ sign
@@ -132,7 +132,7 @@ readItem = (e,t) ->
 		e.target.value = ''
 		Session.set 'savedate', null
 
-updateItem = (e,t, id) ->
+@updateItem = (e,t, id) ->
 	itemEval = String(e.target.value || "") # to string
 	tags = parseHashtag(itemEval) # get hashtags
 	at = parseAtsign(itemEval) # get @ sign 
